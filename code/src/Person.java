@@ -1,6 +1,6 @@
 
 public class Person {
-	public return_type name() {
-		
+	public int name() {
+		return 5;
 	}
 }

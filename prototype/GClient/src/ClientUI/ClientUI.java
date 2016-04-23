@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 public class ClientUI {
 
 	private JFrame frame;
-	private Client client;
 
 	public ClientUI() {
 		initialize();
@@ -56,8 +55,7 @@ public class ClientUI {
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Client c = new Client("localhost", 5000);
-					Object response = c.sendToServer(txtReq.getText());
+					Object response = Application.client.sendToServer(txtReq.getText());
 
 					ArrayList<User> arr = (ArrayList<User>) response;
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -69,7 +67,7 @@ public class ClientUI {
 
 					table.setModel(model);
 					textArea.append(response.toString());
-					c.close();
+					
 				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}

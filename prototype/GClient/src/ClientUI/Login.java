@@ -30,14 +30,11 @@ public class Login {
 	}
 
 	public void login(){
-		Client c = new Client("localhost",5000);
-		User u = (User)c.Request("users/id?" + txtUser.getText());
+		User u = (User)Application.client.Request("users/id?" + txtUser.getText());
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
 			ClientUI ci = new ClientUI();
-			
 		}
-		c.close();
 	}
 	
 	private void initialize() {

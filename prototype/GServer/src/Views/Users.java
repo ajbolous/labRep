@@ -24,26 +24,22 @@ public class Users extends View {
 	}
 
 	public Object all(String[] params) {
-		Config cfg = Config.getConfig();
-		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		DbHandler db = Config.getConfig().getHandler();
 		return db.getUsers().getAllUsers();
 	}
 
 	public Object byName(String[] params) {
-		Config cfg = Config.getConfig();
-		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		DbHandler db = Config.getConfig().getHandler();
 		return db.getUsers().getUserByName(params[0]);
 	}
 
 	public Object byId(String[] params) {
-		Config cfg = Config.getConfig();
-		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		DbHandler db = Config.getConfig().getHandler();
 		return db.getUsers().getUserById(params[0]);
 	}
 
 	public Object add(String[] params) {
-		Config cfg = Config.getConfig();
-		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		DbHandler db = Config.getConfig().getHandler();
 		return "User added succesfully";
 	}
 

@@ -1,12 +1,17 @@
 package Server;
 
+import Database.DbHandler;
 import Utils.Logger;
 
 public class Config {
+	private boolean isDebug = true;
 	private String dbUrl = "localhost/test";
 	private String dbUser = "root";
 	private String dbPassword = "123123";
-	private Logger logger = new Logger();
+	private Logger logger = new Logger(isDebug);
+
+	private DbHandler handler;
+
 	private int port = 5000;
 
 	private static Config instance = new Config();
@@ -18,6 +23,33 @@ public class Config {
 		return instance;
 	}
 
+	public static Config fromArgs(String[] args) {
+		Config cfg = Config.getConfig();
+
+		int port = Integer.parseInt(args[0]);
+
+		if (args.length > 0 && port != 0)
+			cfg.setPort(port);
+		if (args.length > 1)
+			cfg.setDbUrl(args[1]);
+		if (args.length > 1)
+			cfg.setDbUser(args[2]);
+		if (args.length > 1)
+			cfg.setDbPassword(args[3]);
+
+		cfg.printConfig();
+		return cfg;
+	}
+
+	public void printConfig() {
+
+		logger.debug("[CONFIGURATION]");
+		logger.debug("\t|URL : " + dbUrl);
+		logger.debug("\t|PORT : " + port);
+		logger.debug("\t|USER : " + dbUser);
+		logger.debug("\t|PASSWORD : " + dbPassword);
+	}
+
 	public String getDbUrl() {
 		return dbUrl;
 	}
@@ -26,7 +58,7 @@ public class Config {
 		this.dbUrl = dbUrl;
 	}
 
-	public String getDbUser() {
+	public String getUser() {
 		return dbUser;
 	}
 
@@ -56,6 +88,14 @@ public class Config {
 
 	public void setLogger(Logger logger) {
 		this.logger = logger;
+	}
+
+	public DbHandler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(DbHandler handler) {
+		this.handler = handler;
 	}
 
 }

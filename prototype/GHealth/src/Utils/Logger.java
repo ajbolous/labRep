@@ -1,25 +1,11 @@
 package Utils;
 
-import java.util.Date;
-
 public class Logger {
 
-	public static boolean isDebug = false;
-	public Date date = new Date();
-	public Object source;
-	public String prefix = "";
+	public static boolean isDebug = true;
 
-	public Logger(Object source, String prefix) {
-		this.source = source;
-		this.prefix = prefix;
-	}
-
-	public Logger(Object source) {
-		this.source = source;
-		prefix = "";
-	}
-
-	public Logger() {
+	public Logger(boolean debug) {
+		isDebug = debug;
 	}
 
 	public void log(String message) {
@@ -31,7 +17,7 @@ public class Logger {
 	}
 
 	public void info(String message) {
-		log("-" + message);
+		log("" + message);
 	}
 
 	public void warning(String message) {

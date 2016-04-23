@@ -19,11 +19,11 @@ public class Server extends AbstractServer {
 	}
 
 	protected void printStatus() {
-		logger.info("------------------------------------------------");
+		logger.info("-------------------------------------");
 		logger.info("Server status is " + (this.isListening() == true ? "online" : "offline"));
 		logger.info("Server is running at port " + this.getPort());
 		logger.info("Number of clients connected " + this.getNumberOfClients());
-		logger.info("-----------------------------------------------");
+		logger.info("-------------------------------------");
 	}
 
 	protected void serverStarted() {
@@ -42,7 +42,7 @@ public class Server extends AbstractServer {
 		try {
 			client.sendToClient(obj);
 		} catch (IOException e) {
-			logger.error("SORRY");
+			logger.error("Response not sent");
 		}
 	}
 
@@ -53,21 +53,23 @@ public class Server extends AbstractServer {
 
 	public static void main(String[] args) {
 		int port;
+		
 		String url, user, pass;
 		Config cfg = Config.getConfig();//ba5od instatnce ta3 al config
 		Logger log = cfg.getLogger();
+		
 		port = Integer.parseInt(args[0]);
 		url = args[1];
 		user = args[2];
 		pass = args[3];
 
-		log.debug("Recieved number of parameters: " + args.length);
+		log.debug("Number of parameters: " + args.length);
 		log.debug("URL : " + url);
 		log.debug("PORT : " + port);
 		log.debug("USER : " + user);
 		log.debug("PASSWORD : " + pass);
 
-		Server server = new Server(port);
+		Server server = new Server(cfg.getPort());
 
 		try {
 			server.listen();

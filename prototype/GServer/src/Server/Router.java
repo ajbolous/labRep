@@ -13,6 +13,7 @@ public class Router {
 		String[] req = request.split("\\?");
 		String[] url = req[0].split("/");
 		String[] params = {};
+
 		if (req.length > 1)
 			params = req[1].split(",");
 
@@ -21,7 +22,5 @@ public class Router {
 			return users.resolve(url[1], params);
 		}
 		return null;
-
 	}
-
 }

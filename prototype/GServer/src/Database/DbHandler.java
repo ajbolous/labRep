@@ -21,11 +21,11 @@ public class DbHandler {
 	public DbHandler(String url, String username, String password) {
 		this.logger = Config.getConfig().getLogger();
 		try {
-			logger.info("Starting Database driver..");
+			logger.debug("Starting Database driver..");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			logger.info("Connecting to Database " + url + " as user: " + username);
+			logger.debug("Connecting to Database " + url + " as user: " + username);
 			connection = DriverManager.getConnection("jdbc:mysql://" + url, username, password);
-			logger.info("Connected to database.");
+			logger.debug("Connected to database.");
 
 		} catch (Exception ex) {
 			logger.exception(ex);

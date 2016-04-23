@@ -50,7 +50,7 @@ public class UsersHandler {
 	public User getUserByName(String name) {
 		try {
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from users where username=" + name);
+			ResultSet rs = stmt.executeQuery("select * from users where name=" + name);
 			rs.next();
 			User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3));
 			return u;

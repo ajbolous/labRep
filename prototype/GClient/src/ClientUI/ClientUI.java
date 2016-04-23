@@ -27,18 +27,12 @@ public class ClientUI {
 	private JFrame frame;
 	private Client client;
 
-	public static void main(String[] args) {
-
-		ClientUI window = new ClientUI();
-		window.frame.setVisible(true);
-	}
-
 	public ClientUI() {
 		initialize();
 	}
 
 	private void connect() {
-		client = new Client(txtIp.getText(), Integer.parseInt(txtPort.getText()), this);
+		client = new Client(txtIp.getText(), Integer.parseInt(txtPort.getText()));
 	}
 
 	public void display(Object obj) {

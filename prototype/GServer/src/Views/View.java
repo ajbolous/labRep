@@ -6,5 +6,5 @@ public abstract class View {
 	public View() {
 	}
 
-	public abstract Object resolve(String view, String[] params);
+	public abstract Object resolve(String view, String[] params) throws SQLException;
 }

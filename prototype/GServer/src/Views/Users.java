@@ -32,13 +32,13 @@ public class Users extends View {
 	public Object byName(String[] params) {
 		Config cfg = Config.getConfig();
 		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
-		return db.getUsers().getAllUsers();
+		return db.getUsers().getUserByName(params[0]);
 	}
 
 	public Object byId(String[] params) {
 		Config cfg = Config.getConfig();
 		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
-		return db.getUsers().getAllUsers();
+		return db.getUsers().getUserById(params[0]);
 	}
 
 	public Object add(String[] params) {

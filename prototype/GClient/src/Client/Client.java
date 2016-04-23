@@ -7,12 +7,9 @@ import Utils.Logger;
 import ocsf.client.*;
 
 public class Client extends AbstractClient {
-	ClientUI ui;
-
-	public Client(String host, int port, ClientUI ui) {
+	public Client(String host, int port) {
 		super(host, port);
 		try {
-			this.ui = ui;
 			openConnection();
 		} catch (IOException e) {
 
@@ -20,29 +17,24 @@ public class Client extends AbstractClient {
 	}
 
 	public void handleMessageFromServer(Object msg) {
-		if (msg == null) {
-			ui.display("ERROR_BAD RESPONSE");
-			return;
-		}
-		// ui.display(msg.getClass().getName());
-		// ui.display(msg);
-
 	}
 
-	public void handleMessageFromClientUI(String message) {
-		try {
-			Object response = sendToServer(message);
-			ui.display(response);
-		} catch (IOException | ClassNotFoundException e) {
-
-		}
+	public Object Request(String request) {
+			try {
+				return this.sendToServer(request);
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+				return null;
+			}
 	}
-
-	public void quit() {
+	
+	protected void finalize(){
+		close();
+	}
+	public void close() {
 		try {
 			closeConnection();
 		} catch (IOException e) {
 		}
-		System.exit(0);
 	}
 }

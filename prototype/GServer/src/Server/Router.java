@@ -20,7 +20,6 @@ public class Router {
 		case "users":
 			return users.resolve(url[1], params);
 		}
-
 		return null;
 
 	}

@@ -54,7 +54,7 @@ public class Server extends AbstractServer {
 	public static void main(String[] args) {
 		int port;
 		String url, user, pass;
-		Config cfg = Config.getConfig();
+		Config cfg = Config.getConfig();//ba5od instatnce ta3 al config
 		Logger log = cfg.getLogger();
 		port = Integer.parseInt(args[0]);
 		url = args[1];

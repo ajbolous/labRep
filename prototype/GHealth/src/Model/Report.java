@@ -1,28 +1,30 @@
 package Model;
 import java.io.Serializable;
 public class Report implements Serializable {
-	private int id;
+	
+	private int rNum;
 	private String date;
-	public Report(int id,String date)
+	
+	public Report(int rNum,String date)
 	{
-		this.id=id;
+		this.rNum=rNum;
 		this.date=date;
 	}
-	public int getid()
+	public int getRNum()
 	{
-	return id;
+	return rNum;
 	}
 	public String getDate(){
 		return date;
 	}
-	public void setid(int id) {
-		this.id = id;
+	public void setRNum(int rNum) {
+		this.rNum = rNum;
 	}
 	public void setDate(String date) {
 		this.date= date;
 	}
 	public String toString() {
-		return String.format("<Report %d, date %s>", id, date);
+		return String.format("<Report %d, date %s>", rNum, date);
 	}
 
 

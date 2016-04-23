@@ -11,6 +11,7 @@ public class Application {
 		Config cfg = Config.getConfig();
 		client = new Client(cfg.getHost(), cfg.getPort());
 		client.open();
+		
 		Login login = new Login();
 
 	}

@@ -1,5 +1,6 @@
 package Client;
 
+import Model.User;
 import Utils.Logger;
 
 public class Config {
@@ -7,7 +8,8 @@ public class Config {
 	private String host = "localhost";
 	private int port = 5000;
 	private Logger logger = new Logger(isDebug);
-
+	private User user;
+	
 	private static Config instance = new Config();
 
 	private Config() {
@@ -39,6 +41,14 @@ public class Config {
 
 	public void setHost(String host) {
 		this.host = host;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

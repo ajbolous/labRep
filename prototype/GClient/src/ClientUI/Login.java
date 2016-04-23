@@ -9,12 +9,20 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 
 import Client.Client;
+import Client.Config;
 import Model.User;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Window.Type;
+import java.awt.Font;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class Login {
 
@@ -30,43 +38,62 @@ public class Login {
 	}
 
 	public void login(){
-		User u = (User)Application.client.Request("users/id?" + txtUser.getText());
+		User u = (User)Application.client.Request("users/name?" + txtUser.getText());
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
+			Config.getConfig().setUser(u);
 			ClientUI ci = new ClientUI();
 		}
 	}
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 269, 151);
+		frame.setType(Type.UTILITY);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 391, 160);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		txtUser = new JTextField();
-		txtUser.setBounds(75, 11, 125, 20);
+		txtUser.setBounds(75, 64, 178, 20);
 		frame.getContentPane().add(txtUser);
 		txtUser.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBackground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				login();
 			}
 		});
-		btnLogin.setBounds(10, 66, 190, 20);
+		btnLogin.setBounds(285, 90, 79, 20);
 		frame.getContentPane().add(btnLogin);
 		
 		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(10, 14, 60, 14);
+		lblNewLabel.setBounds(10, 67, 60, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(10, 39, 60, 14);
+		lblPassword.setBounds(10, 92, 60, 14);
 		frame.getContentPane().add(lblPassword);
 		
 		txtPass = new JTextField();
 		txtPass.setColumns(10);
-		txtPass.setBounds(75, 36, 125, 20);
+		txtPass.setBounds(75, 89, 178, 20);
 		frame.getContentPane().add(txtPass);
+		
+		JLabel lblWelcomeToGhealth = new JLabel("GHealth System");
+		lblWelcomeToGhealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblWelcomeToGhealth.setHorizontalAlignment(SwingConstants.LEFT);
+		lblWelcomeToGhealth.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\logo.png"));
+		lblWelcomeToGhealth.setBounds(0, 0, 365, 61);
+		frame.getContentPane().add(lblWelcomeToGhealth);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setForeground(Color.BLACK);
+		btnCancel.setBackground(Color.WHITE);
+		btnCancel.setBounds(285, 64, 79, 20);
+		frame.getContentPane().add(btnCancel);
+		frame.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtUser, txtPass, btnLogin, btnCancel, frame.getContentPane(), lblNewLabel, lblPassword, lblWelcomeToGhealth}));
 	}
 }

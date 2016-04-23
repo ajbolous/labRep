@@ -31,11 +31,16 @@ public class Server extends AbstractServer {
 	}
 
 	protected void clientConnected(ConnectionToClient client) {
-		logger.info("New client connected: " + client.getInetAddress());
-		printStatus();
+		logger.info("New client connected: " + client.getInetAddress() + ", total : " + this.getNumberOfClients());
+	}
+	
+	protected void clientDisconnected(ConnectionToClient client){
+		logger.info("client disconnected: " + client.getInetAddress() + ", total : " + this.getNumberOfClients());
 	}
 
 	protected void serverStopped() {
+		logger.error("SERVER STOPPED..");
+		printStatus();
 	}
 
 	public void Response(ConnectionToClient client, Object obj) {

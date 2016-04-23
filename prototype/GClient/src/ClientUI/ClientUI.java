@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Client.Client;
 import Client.Config;
+import Client.Resources;
 import Model.User;
 
 import java.awt.event.ActionListener;
@@ -37,46 +38,22 @@ public class ClientUI {
 	private final JButton btnTests = new JButton("Reports");
 	private final JLabel lblNewLabel = new JLabel("GHealth System");
 	private final JLabel lblNewLabel_1 = new JLabel("");
+	private final JLabel lblNewLabel_2 = new JLabel("Views and Reports");
+	private final JButton button = new JButton("Users");
+	private final JButton button_1 = new JButton("Doctors");
+	private final JLabel lblManage = new JLabel("Managment");
 
 	public ClientUI() {
 		initialize();
-		frame.setSize(792, 527);
+		frame.setSize(784, 449);
 		frame.setVisible(true);
-		lblNewLabel_1.setBounds(0, 456, 473, 42);
+		lblNewLabel_1.setBounds(0, 366, 473, 42);
 		lblNewLabel_1.setText("Logged in as " + Config.getConfig().getUser().getUsername());
-		
-		JButton btnAppoitments = new JButton("Appoitments");
-		btnAppoitments.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\appoitment.png"));
-		btnAppoitments.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAppoitments.setForeground(Color.BLACK);
-		btnAppoitments.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAppoitments.setBackground(Color.WHITE);
-		btnAppoitments.setBounds(290, 264, 223, 68);
-		frame.getContentPane().add(btnAppoitments);
-		
-		JButton btnTreatments = new JButton("Treatments");
-		btnTreatments.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\treatment.png"));
-		btnTreatments.setHorizontalAlignment(SwingConstants.LEFT);
-		btnTreatments.setForeground(Color.BLACK);
-		btnTreatments.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnTreatments.setBackground(Color.WHITE);
-		btnTreatments.setBounds(547, 264, 223, 68);
-		frame.getContentPane().add(btnTreatments);
-		
-		JLabel lblManage = new JLabel("Manage");
-		lblManage.setForeground(UIManager.getColor("Menu.selectionBackground"));
-		lblManage.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblManage.setBounds(10, 97, 78, 22);
-		frame.getContentPane().add(lblManage);
-		
-		JLabel lblView = new JLabel("View");
-		lblView.setForeground(UIManager.getColor("Menu.selectionBackground"));
-		lblView.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblView.setBounds(10, 223, 78, 14);
-		frame.getContentPane().add(lblView);
+
 	}
 
-	private void initialize() {
+	private void initialize(){
+		Resources res = new Resources();
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -88,7 +65,7 @@ public class ClientUI {
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\doctors.png"));
+		btnNewButton.setIcon(res.getIcon("doctors.png"));
 		
 		frame.getContentPane().add(btnNewButton);
 		btnLabs.setBounds(34, 133, 223, 65);
@@ -96,15 +73,21 @@ public class ClientUI {
 		btnLabs.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLabs.setForeground(Color.BLACK);
 		btnLabs.setBackground(Color.WHITE);
-		btnLabs.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\lab.png"));
+		btnLabs.setIcon(res.getIcon("lab.png"));
 		
 		frame.getContentPane().add(btnLabs);
+		btnUsers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Users users = new Users();
+				
+			}
+		});
 		btnUsers.setBounds(284, 131, 229, 68);
 		btnUsers.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnUsers.setBackground(Color.WHITE);
 		btnUsers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUsers.setForeground(Color.BLACK);
-		btnUsers.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\users.png"));
+		btnUsers.setIcon(res.getIcon("users.png"));
 		
 		frame.getContentPane().add(btnUsers);
 		btnTests.setBounds(34, 264, 223, 68);
@@ -112,16 +95,44 @@ public class ClientUI {
 		btnTests.setBackground(Color.WHITE);
 		btnTests.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTests.setForeground(Color.BLACK);
-		btnTests.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\tests.png"));
+		btnTests.setIcon(res.getIcon("tests.png"));
 		
 		frame.getContentPane().add(btnTests);
 		lblNewLabel.setBounds(0, 0, 786, 59);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\logo.png"));
+		lblNewLabel.setIcon(res.getIcon("logo.png"));
 		
 		frame.getContentPane().add(lblNewLabel);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\aj_pa\\Desktop\\labratory\\prototype\\GClient\\img\\info.png"));
+		lblNewLabel_1.setIcon(res.getIcon("info.png"));
 		
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		
+		
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(10, 228, 193, 22);
+		
+		frame.getContentPane().add(lblNewLabel_2);
+		button.setHorizontalAlignment(SwingConstants.LEFT);
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button.setBackground(Color.WHITE);
+		button.setBounds(284, 264, 229, 68);
+		
+		frame.getContentPane().add(button);
+		button_1.setHorizontalAlignment(SwingConstants.LEFT);
+		button_1.setForeground(Color.BLACK);
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button_1.setBackground(Color.WHITE);
+		button_1.setBounds(547, 266, 229, 65);
+		
+		frame.getContentPane().add(button_1);
+		lblManage.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblManage.setBounds(10, 100, 111, 22);
+		
+		frame.getContentPane().add(lblManage);
+		
+		
+		
 	}
 }

@@ -16,6 +16,7 @@ import Model.User;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -24,79 +25,76 @@ import java.awt.Window.Type;
 import java.awt.Font;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.CompoundBorder;
 
-public class Login {
+public class Users {
 
 	private JFrame frame;
 	private JTextField txtUser;
-	private JTextField txtPass;
+	private JTable table;
 
-
-	public Login() {
+	public Users() {
 		initialize();
 		frame.setVisible(true);
-
+		loadData("");
 	}
 
-	public void login(){
-		User u = (User)Application.client.Request("users/name?" + txtUser.getText());
-		if(u.getPassword().equals(txtPass.getText())){
-			frame.setVisible(false);
-			Config.getConfig().setUser(u);
-			ClientUI ci = new ClientUI();
+	private void loadData(String filter) {
+		ArrayList<User> users = (ArrayList<User>) Application.client.Request("users/all");
+
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+
+		for (User u : users) {
+			model.addRow(new Object[] { u.getId(), u.getUsername(), u.getPassword() });
 		}
+		table.setModel(model);
 	}
-	
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setType(Type.UTILITY);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 391, 160);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 472, 508);
+
 		frame.getContentPane().setLayout(null);
 		txtUser = new JTextField();
-		txtUser.setBounds(75, 64, 178, 20);
+		txtUser.setBounds(0, 64, 357, 20);
 		frame.getContentPane().add(txtUser);
 		txtUser.setColumns(10);
-		
+
 		Resources res = new Resources();
-		
-		JButton btnLogin = new JButton("Login");
+
+		JButton btnLogin = new JButton("Search");
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.setBackground(Color.WHITE);
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				login();
-			}
-		});
-		btnLogin.setBounds(285, 90, 79, 20);
+
+		btnLogin.setBounds(367, 64, 79, 20);
 		frame.getContentPane().add(btnLogin);
-		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(10, 67, 60, 14);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(10, 92, 60, 14);
-		frame.getContentPane().add(lblPassword);
-		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(75, 89, 178, 20);
-		frame.getContentPane().add(txtPass);
-		
+
 		JLabel lblWelcomeToGhealth = new JLabel("GHealth System");
 		lblWelcomeToGhealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblWelcomeToGhealth.setHorizontalAlignment(SwingConstants.LEFT);
 		lblWelcomeToGhealth.setIcon(res.getIcon("logo.png"));
 		lblWelcomeToGhealth.setBounds(0, 0, 365, 61);
 		frame.getContentPane().add(lblWelcomeToGhealth);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setForeground(Color.BLACK);
-		btnCancel.setBackground(Color.WHITE);
-		btnCancel.setBounds(285, 64, 79, 20);
-		frame.getContentPane().add(btnCancel);
-		frame.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtUser, txtPass, btnLogin, btnCancel, frame.getContentPane(), lblNewLabel, lblPassword, lblWelcomeToGhealth}));
+
+		table = new JTable();
+		table.setBorder(new CompoundBorder());
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Username", "Password" }) {
+			Class[] columnTypes = new Class[] { Integer.class, String.class, String.class };
+
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.setBounds(10, 95, 436, 363);
+		frame.getContentPane().add(table);
+		frame.setFocusTraversalPolicy(new FocusTraversalOnArray(
+				new Component[] { txtUser, btnLogin, frame.getContentPane(), lblWelcomeToGhealth }));
 	}
 }

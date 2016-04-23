@@ -28,6 +28,7 @@ public class ClientUI {
 
 	public ClientUI() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	private final JDesktopPane desktopPane = new JDesktopPane();
@@ -39,7 +40,6 @@ public class ClientUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 544, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
 		desktopPane.setBackground(UIManager.getColor("CheckBox.light"));
 		frame.getContentPane().add(desktopPane, BorderLayout.CENTER);
 		textArea.setBounds(10, 307, 508, 96);

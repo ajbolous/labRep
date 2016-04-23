@@ -22,22 +22,19 @@ public class Login {
 	private JTextField txtUser;
 	private JTextField txtPass;
 
-	public static void main(String[] args) {
-		Login window = new Login();
-		window.frame.setVisible(true);
-	}
 
 	public Login() {
 		initialize();
+		frame.setVisible(true);
+
 	}
 
 	public void login(){
-		Client c = new Client("localhost",5000);
-		User u = (User)c.Request("users/id?" + txtUser.getText());
+		User u = (User)Application.client.Request("users/id?" + txtUser.getText());
 		if(u.getPassword().equals(txtPass.getText())){
-			txtUser.setText(u.getUsername());
+			frame.setVisible(false);
+			ClientUI ci = new ClientUI();
 		}
-		c.close();
 	}
 	
 	private void initialize() {
@@ -45,7 +42,6 @@ public class Login {
 		frame.setBounds(100, 100, 223, 138);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		txtUser = new JTextField();
 		txtUser.setBounds(75, 11, 125, 20);
 		frame.getContentPane().add(txtUser);

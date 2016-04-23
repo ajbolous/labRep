@@ -25,35 +25,13 @@ import javax.swing.JTextField;
 public class ClientUI {
 
 	private JFrame frame;
-	private Client client;
 
 	public ClientUI() {
 		initialize();
-	}
-
-	private void connect() {
-		client = new Client(txtIp.getText(), Integer.parseInt(txtPort.getText()));
-	}
-
-	public void display(Object obj) {
-		textArea.append("Server: " + obj.toString() + "\n");
-		ArrayList<User> arr = (ArrayList<User>) obj;
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-		for (User u : arr) {
-			textArea.append("Server: " + u.toString() + "\n");
-
-			model.addRow(new Object[] { u.getId(), u.getUsername(), u.getPassword() });
-		}
-
-		table.setModel(model);
-
+		frame.setVisible(true);
 	}
 
 	private final JDesktopPane desktopPane = new JDesktopPane();
-	private final JTextPane txtIp = new JTextPane();
-	private final JTextPane txtPort = new JTextPane();
-	private final JButton btnConnect = new JButton("Connect");
 	private final JTextArea textArea = new JTextArea();
 	private JTextField txtReq;
 	private final JTable table = new JTable();
@@ -62,32 +40,14 @@ public class ClientUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 544, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		desktopPane.setBackground(UIManager.getColor("CheckBox.light"));
 		frame.getContentPane().add(desktopPane, BorderLayout.CENTER);
-
-		txtIp.setText("localhost");
-		txtIp.setBounds(10, 11, 165, 26);
-		desktopPane.add(txtIp);
-
-		txtPort.setText("5000");
-		txtPort.setBounds(10, 48, 165, 26);
-		desktopPane.add(txtPort);
-
-		btnConnect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				connect();
-			}
-		});
-
-		btnConnect.setBounds(10, 84, 89, 23);
-		desktopPane.add(btnConnect);
 		textArea.setBounds(10, 307, 508, 96);
 
 		desktopPane.add(textArea);
 
 		txtReq = new JTextField();
-		txtReq.setBounds(109, 85, 317, 22);
+		txtReq.setBounds(10, 11, 508, 22);
 		desktopPane.add(txtReq);
 		txtReq.setColumns(10);
 
@@ -95,14 +55,25 @@ public class ClientUI {
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Object response = client.sendToServer(txtReq.getText());
+					Object response = Application.client.sendToServer(txtReq.getText());
+
+					ArrayList<User> arr = (ArrayList<User>) response;
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+					for (User u : arr) {
+						textArea.append("Server: " + u.toString() + "\n");
+						model.addRow(new Object[] { u.getId(), u.getUsername(), u.getPassword() });
+					}
+
+					table.setModel(model);
 					textArea.append(response.toString());
+					
 				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		btnSend.setBounds(436, 84, 82, 23);
+		btnSend.setBounds(10, 44, 123, 23);
 		desktopPane.add(btnSend);
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Username", "Password" }) {
 			Class[] columnTypes = new Class[] { Integer.class, String.class, String.class };
@@ -111,7 +82,7 @@ public class ClientUI {
 				return columnTypes[columnIndex];
 			}
 		});
-		table.setBounds(10, 118, 508, 175);
+		table.setBounds(10, 78, 508, 215);
 
 		desktopPane.add(table);
 	}

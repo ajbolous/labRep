@@ -1,7 +1,5 @@
 package Views;
 
-import java.sql.SQLException;
-
 public abstract class View {
 	public View() {
 	}

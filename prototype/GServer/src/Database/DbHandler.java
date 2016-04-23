@@ -9,15 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.User;
+import Server.Config;
 import Utils.Logger;
 
 public class DbHandler {
 
 	private Connection connection;
-	public Logger logger;
-	
+	private Logger logger;
+	private UsersHandler users;
+
 	public DbHandler(String url, String username, String password) {
-		this.logger = new Logger(this);
+		this.logger = Config.getConfig().getLogger();
 		try {
 			logger.info("Starting Database driver..");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -27,66 +29,13 @@ public class DbHandler {
 
 		} catch (Exception ex) {
 			logger.exception(ex);
-		} 
+		}
+
+		users = new UsersHandler(connection);
 	}
 
-	public ArrayList<User> getAllUsers() {
-		ArrayList<User> users = new ArrayList<User>();
-		try {
-			ResultSet rs = query("select * from users");
-			while(rs.next()){
-				User u = new User(rs.getInt(1),rs.getString(2),rs.getString(3));
-				users.add(u);
-			}
-			rs.close();
-			return users;
-		} catch (SQLException e) {
-			logger.exception(e);
-			return null;
-		}
+	public UsersHandler getUsers() {
+		return users;
 	}
 
-	public User getUserById(String id) {
-		try {
-			ResultSet rs = query("select * from users where id=" + id);
-			rs.next();
-			User u = new User(rs.getInt(1),rs.getString(2),rs.getString(3));
-			return u;
-		} catch (SQLException e) {
-			logger.exception(e);
-			return null;
-		}
-	}
-
-	public User getUserByName(String name) {
-		try {
-			ResultSet rs = query("select * from users where username=" + name);
-			rs.next();
-			User u = new User(rs.getInt(1),rs.getString(2),rs.getString(3));
-			return u;
-		} catch (SQLException e) {
-			logger.exception(e);
-			return null;
-		}
-	}
-	
-	public void addUser(String name, String password){
-		try {
-			insert("insert into users values(id,'" + name + "','" + password + "');");
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}
-	}
-	
-	public int insert(String sql) throws SQLException{
-		logger.debug(sql);
-		Statement stmt = connection.createStatement();
-		return stmt.executeUpdate(sql);
-	}
-	
-	public ResultSet query(String sql) throws SQLException {
-		logger.debug(sql);
-		Statement stmt = connection.createStatement();
-		return stmt.executeQuery(sql);
-	}
 }

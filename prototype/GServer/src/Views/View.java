@@ -1,17 +1,12 @@
 package Views;
 
-import Database.DbHandler;
+import java.sql.SQLException;
 
 public abstract class View {
-	
-	private DbHandler db;
-	public View(DbHandler db){
-		this.db = db;
-	}
-	
-	public abstract Object resolve(String view, String[] params);
 
-	public DbHandler getDb() {
-		return db;
+	public View() {
 	}
+
+	public abstract Object resolve(String view, String[] params) throws SQLException;
+
 }

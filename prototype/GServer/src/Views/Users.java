@@ -1,37 +1,49 @@
 package Views;
 
 import Database.DbHandler;
+import Server.Config;
 
 public class Users extends View {
-	
-	public Users(DbHandler db){
-		super(db);
+
+	public Users() {
+		super();
 	}
-	public Object resolve(String view, String[] params){
-		switch(view){
-			case "all":return all(params);
-			case "name":return byName(params);
-			case "id": return byId(params);
-			case "add": return add(params);
+
+	public Object resolve(String view, String[] params) {
+		switch (view) {
+		case "all":
+			return all(params);
+		case "name":
+			return byName(params);
+		case "id":
+			return byId(params);
+		case "add":
+			return add(params);
 		}
 		return null;
 	}
-	
-	
+
 	public Object all(String[] params) {
-		return getDb().getAllUsers();
+		Config cfg = Config.getConfig();
+		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		return db.getUsers().getAllUsers();
 	}
 
 	public Object byName(String[] params) {
-		return getDb().getUserByName(params[0]);
+		Config cfg = Config.getConfig();
+		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		return db.getUsers().getAllUsers();
 	}
 
 	public Object byId(String[] params) {
-		return getDb().getUserById(params[0]);
+		Config cfg = Config.getConfig();
+		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
+		return db.getUsers().getAllUsers();
 	}
-	
-	public Object add(String[] params){
-		getDb().addUser(params[0],params[1]);
+
+	public Object add(String[] params) {
+		Config cfg = Config.getConfig();
+		DbHandler db = new DbHandler(cfg.getDbUrl(), cfg.getDbUser(), cfg.getDbPassword());
 		return "User added succesfully";
 	}
 

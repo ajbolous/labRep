@@ -23,9 +23,7 @@ public class Logger {
 	}
 
 	public void log(String message) {
-
-			System.out.println(message);
-
+		System.out.println(message);
 	}
 
 	public void error(String message) {
@@ -44,7 +42,6 @@ public class Logger {
 		error(e.getMessage());
 		if (isDebug)
 			e.printStackTrace();
-
 	}
 
 	public void debug(String message) {

@@ -39,16 +39,35 @@ public class ClientUI {
 	private final JLabel lblNewLabel = new JLabel("GHealth System");
 	private final JLabel lblNewLabel_1 = new JLabel("");
 	private final JLabel lblNewLabel_2 = new JLabel("Views and Reports");
-	private final JButton button = new JButton("Users");
-	private final JButton button_1 = new JButton("Doctors");
 	private final JLabel lblManage = new JLabel("Managment");
+	private final JButton btnMonthly = new JButton("Monthly reports");
+	private final JButton button_2 = new JButton("Reports");
+	private final JLabel lblNewLabel_3 = new JLabel("Connected to server : ");
+	private final JLabel lblTestsAndResults = new JLabel("Tests and results");
+	private final JButton button_1 = new JButton("Reports");
+	private final JButton button_3 = new JButton("Reports");
 
 	public ClientUI() {
 		initialize();
-		frame.setSize(784, 449);
+		frame.setSize(781, 547);
 		frame.setVisible(true);
-		lblNewLabel_1.setBounds(0, 366, 473, 42);
+		lblNewLabel_1.setBounds(503, 2, 221, 44);
 		lblNewLabel_1.setText("Logged in as " + Config.getConfig().getUser().getUsername());
+		
+		if(Application.client.isConnected())
+			lblNewLabel_3.setText("Connected to server: " + Config.getConfig().getHost() + ":" + Config.getConfig().getPort());
+		else
+			lblNewLabel_3.setText("Offline");
+
+		
+		lblNewLabel_3.setBounds(4, 505, 308, 14);
+		
+		frame.getContentPane().add(lblNewLabel_3);
+		lblTestsAndResults.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTestsAndResults.setBounds(10, 359, 193, 22);
+		
+		frame.getContentPane().add(lblTestsAndResults);
+
 
 	}
 
@@ -60,73 +79,128 @@ public class ClientUI {
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setLayout(null);
-		btnNewButton.setBounds(547, 133, 229, 65);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Settings settings = new Settings();
+			}
+		});
+		button.setHorizontalAlignment(SwingConstants.LEFT);
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(726, 11, 39, 35);
+		button.setBorder(null);
+		button.setIcon(res.getIcon("settings.png"));
+		frame.getContentPane().add(button);
+		button.setToolTipText("Doctors managment form");
+		
+		
+		btnNewButton.setBounds(290, 133, 144, 65);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setIcon(res.getIcon("doctors.png"));
+		btnNewButton.setBorder(null);
+
+		button_1.setHorizontalAlignment(SwingConstants.LEFT);
+		button_1.setForeground(Color.BLACK);
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button_1.setBorder(null);
+		button_1.setBackground(Color.WHITE);
+		button_1.setBounds(34, 394, 129, 68);
+		button_1.setIcon(res.getIcon("lab.png"));
+		frame.getContentPane().add(button_1);
+		
+		button_3.setHorizontalAlignment(SwingConstants.LEFT);
+		button_3.setForeground(Color.BLACK);
+		button_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button_3.setBorder(null);
+		button_3.setBackground(Color.WHITE);
+		button_3.setBounds(183, 394, 129, 68);
+		button_3.setIcon(res.getIcon("treatment.png"));
+		frame.getContentPane().add(button_3);
 		
 		frame.getContentPane().add(btnNewButton);
-		btnLabs.setBounds(34, 133, 223, 65);
+		btnLabs.setToolTipText("Laboratiries Managment form");
+		btnLabs.setBounds(34, 133, 118, 65);
 		btnLabs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLabs.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLabs.setForeground(Color.BLACK);
 		btnLabs.setBackground(Color.WHITE);
-		btnLabs.setIcon(res.getIcon("lab.png"));
-		
+		btnLabs.setIcon(res.getIcon("result.png"));
+		btnLabs.setBorder(null);
+
 		frame.getContentPane().add(btnLabs);
+		btnUsers.setToolTipText("Users managment form");
 		btnUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Users users = new Users();
 				
 			}
 		});
-		btnUsers.setBounds(284, 131, 229, 68);
+		btnUsers.setBounds(162, 131, 118, 68);
 		btnUsers.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnUsers.setBackground(Color.WHITE);
 		btnUsers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUsers.setForeground(Color.BLACK);
+		btnUsers.setBorder(null);
 		btnUsers.setIcon(res.getIcon("users.png"));
+		btnUsers.setBorder(null);
+
 		
 		frame.getContentPane().add(btnUsers);
-		btnTests.setBounds(34, 264, 223, 68);
+		btnTests.setBounds(34, 264, 129, 68);
 		btnTests.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnTests.setBackground(Color.WHITE);
 		btnTests.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTests.setForeground(Color.BLACK);
 		btnTests.setIcon(res.getIcon("tests.png"));
+		btnTests.setBorder(null);
+
+		btnMonthly.setHorizontalAlignment(SwingConstants.LEFT);
+		btnMonthly.setForeground(Color.BLACK);
+		btnMonthly.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnMonthly.setBorder(null);
+		btnMonthly.setBackground(Color.WHITE);
+		btnMonthly.setBounds(183, 264, 183, 65);
+		btnMonthly.setIcon(res.getIcon("tests.png"));
+
+		frame.getContentPane().add(btnMonthly);
+		button_2.setHorizontalAlignment(SwingConstants.LEFT);
+		button_2.setForeground(Color.BLACK);
+		button_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button_2.setBorder(null);
+		button_2.setBackground(Color.WHITE);
+		button_2.setBounds(390, 262, 183, 68);
+		button_2.setIcon(res.getIcon("tests.png"));
+
+		frame.getContentPane().add(button_2);
+		
+		
+		
 		
 		frame.getContentPane().add(btnTests);
-		lblNewLabel.setBounds(0, 0, 786, 59);
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setBounds(0, 0, 366, 58);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setIcon(res.getIcon("logo.png"));
-		
+
 		frame.getContentPane().add(lblNewLabel);
-		lblNewLabel_1.setIcon(res.getIcon("info.png"));
+		lblNewLabel_1.setIcon(res.getIcon("user.png"));
 		
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		
 		
+		
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_2.setBounds(10, 228, 193, 22);
-		
+
 		frame.getContentPane().add(lblNewLabel_2);
-		button.setHorizontalAlignment(SwingConstants.LEFT);
-		button.setForeground(Color.BLACK);
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button.setBackground(Color.WHITE);
-		button.setBounds(284, 264, 229, 68);
-		
-		frame.getContentPane().add(button);
-		button_1.setHorizontalAlignment(SwingConstants.LEFT);
-		button_1.setForeground(Color.BLACK);
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(547, 266, 229, 65);
-		
-		frame.getContentPane().add(button_1);
 		lblManage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblManage.setBounds(10, 100, 111, 22);
 		

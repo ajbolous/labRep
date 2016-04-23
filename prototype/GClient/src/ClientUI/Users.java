@@ -76,7 +76,7 @@ public class Users {
 		btnLogin.setBounds(367, 64, 79, 20);
 		frame.getContentPane().add(btnLogin);
 
-		JLabel lblWelcomeToGhealth = new JLabel("GHealth System");
+		JLabel lblWelcomeToGhealth = new JLabel("Users manager");
 		lblWelcomeToGhealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblWelcomeToGhealth.setHorizontalAlignment(SwingConstants.LEFT);
 		lblWelcomeToGhealth.setIcon(res.getIcon("logo.png"));

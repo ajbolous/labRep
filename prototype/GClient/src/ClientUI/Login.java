@@ -24,12 +24,13 @@ import java.awt.Window.Type;
 import java.awt.Font;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import javax.swing.JPasswordField;
 
 public class Login {
 
 	private JFrame frame;
 	private JTextField txtUser;
-	private JTextField txtPass;
+	private JPasswordField txtPass;
 
 
 	public Login() {
@@ -39,7 +40,7 @@ public class Login {
 	}
 
 	public void login(){
-		User u = (User)Application.client.Request("users/name?" + txtUser.getText());
+		User u = (User)Application.client.Request("users/byName?" + txtUser.getText());
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
 			Config.getConfig().setUser(u);
@@ -80,7 +81,7 @@ public class Login {
 		lblPassword.setBounds(10, 92, 60, 14);
 		frame.getContentPane().add(lblPassword);
 		
-		txtPass = new JTextField();
+		txtPass = new JPasswordField();
 		txtPass.setColumns(10);
 		txtPass.setBounds(75, 89, 178, 20);
 		frame.getContentPane().add(txtPass);

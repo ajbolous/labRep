@@ -36,7 +36,7 @@ public class Reports extends View {
 
 	public Object monthly(String[] params) {
 		DbHandler db = Config.getConfig().getHandler();
-		return db.getReports().getMonthlyReport(params.toString());
+		return db.getReports().getMonthlyReport(params[0]);
 
 	}
 }

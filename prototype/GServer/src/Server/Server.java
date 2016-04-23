@@ -62,6 +62,7 @@ public class Server extends AbstractServer {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 
 		Config cfg = Config.fromArgs(args);
+		
 		cfg.setHandler(new DbHandler(cfg.getDbUrl(),cfg.getUser(), cfg.getDbPassword()));
 		Server server = new Server(cfg.getPort());
 		server.listen();

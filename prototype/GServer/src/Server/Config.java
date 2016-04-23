@@ -26,6 +26,11 @@ public class Config {
 	public static Config fromArgs(String[] args) {
 		Config cfg = Config.getConfig();
 
+		
+		if (args.length==0)
+			return cfg;
+		
+		
 		int port = Integer.parseInt(args[0]);
 
 		if (args.length > 0 && port != 0)

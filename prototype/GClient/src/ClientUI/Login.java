@@ -39,7 +39,7 @@ public class Login {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 223, 138);
+		frame.setBounds(100, 100, 269, 151);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		txtUser = new JTextField();

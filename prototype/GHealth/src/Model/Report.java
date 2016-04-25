@@ -4,7 +4,8 @@ public class Report implements Serializable {
 	
 	private int rNum;
 	private String date;
-	
+	private String name;
+
 	public Report(int rNum,String date)
 	{
 		this.rNum=rNum;

@@ -1,5 +1,5 @@
 package Model;
 
-public class CEO {
+public class Ceo {
 
 }

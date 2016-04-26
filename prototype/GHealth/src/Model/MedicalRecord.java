@@ -1,6 +1,6 @@
 package Model;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,8 +52,4 @@ public class MedicalRecord {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-=======
-public class MedicalRecord {
-
->>>>>>> 3c800e19db553276b114761313d4f5b05252f72a
 }

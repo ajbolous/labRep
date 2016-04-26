@@ -1,12 +1,13 @@
 package Model;
 import java.io.Serializable;
+import java.util.Date;
 public class Report implements Serializable {
 	
 	private int rNum;
 	private Date date;
 	private String name;
 
-	public Report(int rNum,String date)
+	public Report(int rNum,Date date)
 	{
 		this.rNum=rNum;
 		this.date=date;
@@ -15,13 +16,13 @@ public class Report implements Serializable {
 	{
 	return rNum;
 	}
-	public String getDate(){
+	public Date getDate(){
 		return date;
 	}
 	public void setRNum(int rNum) {
 		this.rNum = rNum;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date= date;
 	}
 	public String toString() {

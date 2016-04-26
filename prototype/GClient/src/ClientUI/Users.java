@@ -4,27 +4,36 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
 
 import Client.Client;
 import Client.Config;
 import Client.Resources;
-import Model.User;
+import Users.User;
+import Utils.Request;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
 import java.awt.Window.Type;
 import java.awt.Font;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
@@ -44,7 +53,7 @@ public class Users {
 	}
 
 	private void loadData(String filter) {
-		ArrayList<User> users = (ArrayList<User>) Application.client.Request("users/all");
+		ArrayList<User> users = (ArrayList<User>) Application.client.Request(new Request("users/all"));
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);

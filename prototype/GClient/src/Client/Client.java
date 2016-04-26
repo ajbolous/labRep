@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ClientUI.ClientUI;
 import Utils.Logger;
+import Utils.Request;
 import ocsf.client.*;
 
 public class Client extends AbstractClient {
@@ -14,7 +15,7 @@ public class Client extends AbstractClient {
 	public void handleMessageFromServer(Object msg) {
 	}
 
-	public Object Request(String request) {
+	public Object Request(Request request) {
 		try {
 			return this.sendToServer(request);
 		} catch (ClassNotFoundException | IOException e) {

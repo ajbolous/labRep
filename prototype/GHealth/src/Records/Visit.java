@@ -1,4 +1,4 @@
-package Model;
+package Records;
 
 public class Visit {
 

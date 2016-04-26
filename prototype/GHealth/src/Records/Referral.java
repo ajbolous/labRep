@@ -1,6 +1,8 @@
-package Model;
+package Records;
 
 import java.util.Date;
+
+import Users.Patient;
 
 public class Referral {
 	private String id;

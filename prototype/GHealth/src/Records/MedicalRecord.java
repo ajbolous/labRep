@@ -1,8 +1,11 @@
-package Model;
+package Records;
 
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import Users.Doctor;
+import Users.Person;
 
 public class MedicalRecord {
 	

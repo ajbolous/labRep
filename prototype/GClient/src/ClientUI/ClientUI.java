@@ -4,9 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JDesktopPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JTextPane;
+
 import java.awt.Color;
+
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -16,16 +20,18 @@ import javax.swing.table.DefaultTableModel;
 import Client.Client;
 import Client.Config;
 import Client.Resources;
-import Model.User;
+import Users.User;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Window.Type;
 

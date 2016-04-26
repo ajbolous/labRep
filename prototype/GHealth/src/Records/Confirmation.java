@@ -1,10 +1,11 @@
-package Model;
+package Records;
 
 import java.util.Date;
 
 public class Confirmation {
 	private String id;
 	private Date openDate;
+	private int num;
 	public String getId() {
 		return id;
 	}
@@ -17,4 +18,5 @@ public class Confirmation {
 	public void setOpenDate(Date openDate) {
 		this.openDate = openDate;
 	}
+	
 }

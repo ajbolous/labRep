@@ -1,4 +1,4 @@
-package Model;
+package Users;
 
 import java.io.Serializable;
 

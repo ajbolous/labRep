@@ -1,7 +1,9 @@
-package Model;
+package Records;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import Users.Patient;
 
 public class Treatment {
 	private int id;

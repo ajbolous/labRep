@@ -1,6 +1,10 @@
-package Model;
+package Users;
 
-public class Person 
+import java.io.Serializable;
+
+import Model.SerializedEntity;
+
+public class Person extends SerializedEntity
 {
   private int id;
   private String name;

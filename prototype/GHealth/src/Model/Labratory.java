@@ -1,5 +1,7 @@
 package Model;
 
+import Users.Labrtorian;
+
 public class Labratory {
 	private Clinic clinic;
 	private Labrtorian labratorian;

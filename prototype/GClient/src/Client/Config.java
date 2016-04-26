@@ -1,6 +1,6 @@
 package Client;
 
-import Model.User;
+import Users.User;
 import Utils.Logger;
 
 public class Config {

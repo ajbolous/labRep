@@ -1,6 +1,9 @@
-package Model;
+package Records;
 
 import java.util.Date;
+
+import Model.Labratory;
+import Users.Patient;
 
 public class ExaminationReferral  {
 	private int id;

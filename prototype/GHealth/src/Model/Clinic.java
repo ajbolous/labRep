@@ -2,7 +2,12 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Clinic {
+import Users.ClinicEmployee;
+import Users.Labrtorian;
+import Users.Manager;
+import Users.Secretary;
+
+public class Clinic extends SerializedEntity{
 
 	private String address;
 	
@@ -11,8 +16,8 @@ public class Clinic {
 	
 	private ArrayList<ClinicEmployee> employees;
 	private Manager manager;
-	
-	
+	private Labrtorian labrtorian;
+	private Secretary secretary;
 
 	public String getAddress() {
 		return address;

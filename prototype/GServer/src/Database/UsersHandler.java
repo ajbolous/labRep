@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Model.User;
 import Server.Config;
+import Users.User;
 
 public class UsersHandler {
 

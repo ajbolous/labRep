@@ -9,8 +9,9 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import Model.User;
+
 import Server.Config;
+import Users.User;
 import Model.Report;
 
 public class ReportsHandler {

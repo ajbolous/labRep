@@ -9,6 +9,7 @@ public class ExaminationReferral  {
 	private String comments;
 	private Labratory labratory;
 	
+	
 	public int getId() {
 		return id;
 	}

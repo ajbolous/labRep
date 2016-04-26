@@ -12,6 +12,7 @@ import Client.Client;
 import Client.Config;
 import Client.Resources;
 import Model.User;
+import Utils.Request;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,7 +41,9 @@ public class Login {
 	}
 
 	public void login(){
-		User u = (User)Application.client.Request("users/byName?" + txtUser.getText());
+		Request r = new Request("users/byName");
+		r.addParam("name", txtUser.getText());
+		User u = (User)Application.client.Request(r);
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
 			Config.getConfig().setUser(u);

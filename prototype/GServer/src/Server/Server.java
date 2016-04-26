@@ -6,6 +6,7 @@ import com.mysql.jdbc.Driver;
 
 import Database.DbHandler;
 import Utils.Logger;
+import Utils.Request;
 import ocsf.server.*;
 
 public class Server extends AbstractServer {
@@ -45,19 +46,15 @@ public class Server extends AbstractServer {
 		printStatus();
 	}
 
-	public void Response(ConnectionToClient client, Object obj) {
+	protected void handleMessageFromClient(Object message, ConnectionToClient client) {
+		Request request = (Request)message;
+		logger.info("[REQUEST] from " + client.getInetAddress() + " : " + request.getUrl() + " " + request.getParams().toString());
 		try {
-			client.sendToClient(obj);
+			client.sendToClient(router.resolve((Request)request));
 		} catch (IOException e) {
 			logger.error("Response not sent");
 		}
 	}
-
-	protected void handleMessageFromClient(Object request, ConnectionToClient client) {
-		logger.info("[REQUEST] from " + client.getInetAddress() + " : " + request.toString());
-		Response(client, router.resolve(request.toString()));
-	}
-
 
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 

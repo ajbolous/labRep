@@ -12,6 +12,7 @@ import Client.Client;
 import Client.Config;
 import Client.Resources;
 import Model.User;
+import Utils.Request;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -44,7 +45,7 @@ public class Users {
 	}
 
 	private void loadData(String filter) {
-		ArrayList<User> users = (ArrayList<User>) Application.client.Request("users/all");
+		ArrayList<User> users = (ArrayList<User>) Application.client.Request(new Request("users/all"));
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);

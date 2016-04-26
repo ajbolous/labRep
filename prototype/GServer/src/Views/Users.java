@@ -23,7 +23,7 @@ public class Users extends View {
 
 	public Object add(Request request) {
 		DbHandler db = Config.getConfig().getHandler();
-		return "User added succesfully";
+ 		return "User added succesfully";
 	}
 
 }

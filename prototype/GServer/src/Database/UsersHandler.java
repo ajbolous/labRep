@@ -23,7 +23,7 @@ public class UsersHandler {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users");
 			while (rs.next()) {
-				User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3));
+				User u = new User();
 				users.add(u);
 			}
 			rs.close();
@@ -32,14 +32,14 @@ public class UsersHandler {
 			Config.getConfig().getLogger().exception(e);
 			return null;
 		}
-	}
+	} 
 
 	public User getUserById(String id) {
 		try {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users where id=" + id);
 			rs.next();
-			User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3));
+			User u = new User();
 			return u;
 		} catch (SQLException e) {
 			Config.getConfig().getLogger().exception(e);
@@ -52,7 +52,7 @@ public class UsersHandler {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from users where user='" + name + "'");
 			rs.next();
-			User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3));
+			User u = new User();
 			return u;
 		} catch (SQLException e) {
 			Config.getConfig().getLogger().exception(e);

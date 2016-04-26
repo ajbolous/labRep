@@ -3,7 +3,7 @@ import java.io.Serializable;
 public class Report implements Serializable {
 	
 	private int rNum;
-	private String date;
+	private Date date;
 	private String name;
 
 	public Report(int rNum,String date)

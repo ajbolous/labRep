@@ -5,6 +5,8 @@ import java.util.Date;
 public class Confirmation {
 	private String id;
 	private Date openDate;
+	private String num;
+	
 	public String getId() {
 		return id;
 	}

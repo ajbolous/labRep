@@ -20,7 +20,7 @@ public class Users extends View {
 		DbHandler db = Config.getConfig().getHandler();
 		return db.getUsers().getUserById((String)request.getParam("id"));
 	}
-
+	
 	public Object add(Request request) {
 		DbHandler db = Config.getConfig().getHandler();
  		return "User added succesfully";

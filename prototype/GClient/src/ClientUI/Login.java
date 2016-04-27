@@ -52,13 +52,14 @@ public class Login {
 		Request r = new Request("users/byName");
 		r.addParam("name", txtUser.getText());
 		User u = (User)Application.client.Request(r);
+	
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
 			Config.getConfig().setUser(u);
 			ClientUI ci = new ClientUI();
 		}
 	}
-	
+	better ?yes bs bnf3esh algwaneb kman ? mmm tanye
 	private void initialize() {
 		frame = new JFrame();
 		frame.setType(Type.UTILITY);

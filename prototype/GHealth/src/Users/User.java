@@ -1,17 +1,13 @@
-package Model;
+package Users;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User extends Person implements Serializable {
 	private int id;
 	private String username;
 	private String password;
 
-	public User(int id, String username, String password) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-	}
+	
 
 	public int getId() {
 		return id;

@@ -4,26 +4,35 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
 
 import Client.Client;
 import Client.Config;
 import Client.Resources;
-import Model.User;
+import Users.User;
+import Utils.Request;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
 import java.awt.Window.Type;
 import java.awt.Font;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import java.awt.Component;
+
 import javax.swing.JPasswordField;
 
 public class Login {
@@ -40,7 +49,9 @@ public class Login {
 	}
 
 	public void login(){
-		User u = (User)Application.client.Request("users/byName?" + txtUser.getText());
+		Request r = new Request("users/byName");
+		r.addParam("name", txtUser.getText());
+		User u = (User)Application.client.Request(r);
 		if(u.getPassword().equals(txtPass.getText())){
 			frame.setVisible(false);
 			Config.getConfig().setUser(u);

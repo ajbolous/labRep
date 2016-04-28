@@ -2,12 +2,15 @@ package Views;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+
+import Utils.Request;
 
 public abstract class View {
-	public Object resolve(String view, String[] params) {
+	public Object resolve(Request request) {
 		try {
-			Method method = this.getClass().getMethod(view, params.getClass());
-			return method.invoke(this, new Object[] { params });
+			Method method = this.getClass().getMethod(request.getOp(), request.getClass());
+			return method.invoke(this, request);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
 			return null;

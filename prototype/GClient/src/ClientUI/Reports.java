@@ -7,7 +7,7 @@ import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.ListSelectionModel;
 
-public class Report extends JPanel {
+public class Reports extends JPanel {
 
 	/**
 	 * Create the panel.

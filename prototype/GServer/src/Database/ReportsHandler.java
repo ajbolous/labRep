@@ -13,7 +13,6 @@ import java.util.Calendar;
 import Server.Config;
 import Users.User;
 import Model.Report;
-
 public class ReportsHandler {
 	private Connection connection;
 

@@ -19,7 +19,7 @@ public class DbHandler {
 	private Logger logger;
 	private UsersHandler users;
 	private ReportsHandler reports;
-
+    private DoctorsHandler doctors;
 	public DbHandler(String url, String username, String password) {
 		this.logger = Config.getConfig().getLogger();
 		try {
@@ -42,6 +42,10 @@ public class DbHandler {
 
 	public ReportsHandler getReports() {
 		return reports;
+
+	}
+	public DoctorsHandler getDoctors() {
+		return doctors;
 
 	}
 

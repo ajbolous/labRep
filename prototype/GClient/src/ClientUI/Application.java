@@ -15,11 +15,14 @@ public class Application {
 		}
 		client = new Client(cfg.getHost(), cfg.getPort());
 		client.open();
+		if(client.isConnected()){
+			ClientUI ui = new ClientUI();
+		}
+		else
+			System.exit(0);
 	}
 
 	public static void main(String[] args) {
-		connect();
-		ClientUI ui = new ClientUI();
-
+		Settings settings = new Settings();
 	}
 }

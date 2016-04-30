@@ -1,3 +1,4 @@
 *.vpp~*
 *.working*
 .idea/
+bin/

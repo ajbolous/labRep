@@ -56,15 +56,16 @@ public class Physicians {
 		frame.setVisible(true);
 		loadData("");
 	}
-
+	private ArrayList<Physician> physicians;
+	@SuppressWarnings("unchecked")
 	private void loadData(String filter) {
-		ArrayList<Physician> physicians = (ArrayList<Physician>) Application.client.Request(new Request("physicians/all"));
+		physicians = (ArrayList<Physician>) Application.client.Request(new Request("physicians/all"));
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 
 		for (Physician p : physicians) {
-			model.addRow(new Object[] {p, p.getName(), p.getSpecialization()});
+			model.addRow(new Object[] {p.getName(), p.getSpecialization()});
 			
 		}
 		table.setModel(model);
@@ -109,17 +110,17 @@ public class Physicians {
 				new Object[][] {
 				},
 				new String[] {
-					"Obj", "Name", "Specialization"
+					"Name", "Specialization"
 				}
 			) {
 				Class[] columnTypes = new Class[] {
-					Object.class, String.class, String.class
+					String.class, String.class
 				};
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];
 				}
 				boolean[] columnEditables = new boolean[] {
-					false, true, true
+				true, true
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
@@ -139,6 +140,7 @@ public class Physicians {
 				Request r = new Request("physicians/update");
 				r.addParam("physician", selectedPhysician);
 				Application.client.Request(r);
+				loadData("");
 			}
 		});
 		
@@ -162,7 +164,7 @@ public class Physicians {
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				Physician p = (Physician)table.getModel().getValueAt(row, 0);
+				Physician p = physicians.get(row);
 				textField.setText(p.getName());
 				textField_1.setText(p.getSpecialization());
 				selectedPhysician = p;

@@ -44,8 +44,6 @@ public class Settings {
 	private JButton btnCancel;
 	private JTextField txtHost;
 	private JTextField txtPort;
-	private JTextField textField_2;
-	private JTextField textField_3;
 
 	public Settings() {
 		initialize();
@@ -62,13 +60,13 @@ public class Settings {
 		frame = new JFrame();
 		frame.setType(Type.UTILITY);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 304, 295);
+		frame.setBounds(100, 100, 304, 195);
 
 		frame.getContentPane().setLayout(null);
 
 		Resources res = new Resources();
 
-		JButton btnLogin = new JButton("Save");
+		JButton btnLogin = new JButton("Connect");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Config cfg = Config.getConfig();
@@ -81,25 +79,25 @@ public class Settings {
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.setBackground(Color.WHITE);
 
-		btnLogin.setBounds(117, 223, 79, 20);
+		btnLogin.setBounds(78, 134, 79, 20);
 		frame.getContentPane().add(btnLogin);
 
-		JLabel lblWelcomeToGhealth = new JLabel("Settings");
+		JLabel lblWelcomeToGhealth = new JLabel("Connect");
 		lblWelcomeToGhealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblWelcomeToGhealth.setHorizontalAlignment(SwingConstants.LEFT);
 		lblWelcomeToGhealth.setIcon(res.getIcon("logo.png"));
-		lblWelcomeToGhealth.setBounds(0, 0, 365, 61);
+		lblWelcomeToGhealth.setBounds(0, 0, 278, 61);
 		frame.getContentPane().add(lblWelcomeToGhealth);
 		
 		btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
+				System.exit(0);
 			}
 		});
 		btnCancel.setForeground(Color.BLACK);
 		btnCancel.setBackground(Color.WHITE);
-		btnCancel.setBounds(205, 223, 79, 20);
+		btnCancel.setBounds(205, 134, 79, 20);
 		frame.getContentPane().add(btnCancel);
 		
 		txtHost = new JTextField();
@@ -112,16 +110,6 @@ public class Settings {
 		txtPort.setBounds(78, 103, 206, 20);
 		frame.getContentPane().add(txtPort);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(78, 134, 206, 20);
-		frame.getContentPane().add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(78, 170, 206, 20);
-		frame.getContentPane().add(textField_3);
-		
 		JLabel lblNewLabel = new JLabel("Host:");
 		lblNewLabel.setBounds(22, 75, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
@@ -129,14 +117,6 @@ public class Settings {
 		JLabel lblPort = new JLabel("Port:");
 		lblPort.setBounds(22, 106, 46, 14);
 		frame.getContentPane().add(lblPort);
-		
-		JLabel lblDate = new JLabel("Date:");
-		lblDate.setBounds(22, 137, 46, 14);
-		frame.getContentPane().add(lblDate);
-		
-		JLabel lblColors = new JLabel("Colors:");
-		lblColors.setBounds(22, 173, 46, 14);
-		frame.getContentPane().add(lblColors);
 		frame.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnLogin, frame.getContentPane(), lblWelcomeToGhealth}));
 	}
 }

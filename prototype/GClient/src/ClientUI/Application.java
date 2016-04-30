@@ -19,7 +19,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		connect();
-		Login login = new Login();
+		ClientUI ui = new ClientUI();
 
 	}
 }

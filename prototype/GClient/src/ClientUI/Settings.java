@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import Client.Client;
 import Client.Config;
 import Client.Resources;
-import Users.User;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;

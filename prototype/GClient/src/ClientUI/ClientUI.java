@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import Client.Client;
 import Client.Config;
 import Client.Resources;
-import Users.User;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -38,7 +37,7 @@ import java.awt.Window.Type;
 public class ClientUI {
 
 	private JFrame frame;
-	private final JButton btnNewButton = new JButton("Doctors");
+	private final JButton btnNewButton = new JButton("Physicians");
 	private final JButton btnLabs = new JButton("Labs");
 	private final JButton btnUsers = new JButton("Users");
 	private final JButton btnTests = new JButton("Reports");
@@ -50,15 +49,15 @@ public class ClientUI {
 	private final JButton button_2 = new JButton("Reports");
 	private final JLabel lblNewLabel_3 = new JLabel("Connected to server : ");
 	private final JLabel lblTestsAndResults = new JLabel("Tests and results");
-	private final JButton button_1 = new JButton("Reports");
-	private final JButton button_3 = new JButton("Reports");
+	private final JButton btnTests_1 = new JButton("Tests");
+	private final JButton btnResults = new JButton("Results");
 
 	public ClientUI() {
 		initialize();
 		frame.setSize(781, 547);
 		frame.setVisible(true);
 		lblNewLabel_1.setBounds(503, 2, 221, 44);
-		lblNewLabel_1.setText("Logged in as " + Config.getConfig().getUser().getUsername());
+		lblNewLabel_1.setText("Logged in as ProtoAdmin");
 		
 		if(Application.client.isConnected())
 			lblNewLabel_3.setText("Connected to server: " + Config.getConfig().getHost() + ":" + Config.getConfig().getPort());
@@ -102,9 +101,14 @@ public class ClientUI {
 		button.setIcon(res.getIcon("settings.png"));
 		frame.getContentPane().add(button);
 		button.setToolTipText("Doctors managment form");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Physicians phys = new Physicians();
+			}
+		});
 		
 		
-		btnNewButton.setBounds(290, 133, 144, 65);
+		btnNewButton.setBounds(34, 152, 169, 65);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -112,27 +116,27 @@ public class ClientUI {
 		btnNewButton.setIcon(res.getIcon("doctors.png"));
 		btnNewButton.setBorder(null);
 
-		button_1.setHorizontalAlignment(SwingConstants.LEFT);
-		button_1.setForeground(Color.BLACK);
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button_1.setBorder(null);
-		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(34, 394, 129, 68);
-		button_1.setIcon(res.getIcon("lab.png"));
-		frame.getContentPane().add(button_1);
+		btnTests_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnTests_1.setForeground(Color.BLACK);
+		btnTests_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnTests_1.setBorder(null);
+		btnTests_1.setBackground(Color.WHITE);
+		btnTests_1.setBounds(34, 394, 151, 68);
+		btnTests_1.setIcon(res.getIcon("lab.png"));
+		frame.getContentPane().add(btnTests_1);
 		
-		button_3.setHorizontalAlignment(SwingConstants.LEFT);
-		button_3.setForeground(Color.BLACK);
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button_3.setBorder(null);
-		button_3.setBackground(Color.WHITE);
-		button_3.setBounds(183, 394, 129, 68);
-		button_3.setIcon(res.getIcon("treatment.png"));
-		frame.getContentPane().add(button_3);
+		btnResults.setHorizontalAlignment(SwingConstants.LEFT);
+		btnResults.setForeground(Color.BLACK);
+		btnResults.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnResults.setBorder(null);
+		btnResults.setBackground(Color.WHITE);
+		btnResults.setBounds(195, 394, 183, 68);
+		btnResults.setIcon(res.getIcon("treatment.png"));
+		frame.getContentPane().add(btnResults);
 		
 		frame.getContentPane().add(btnNewButton);
 		btnLabs.setToolTipText("Laboratiries Managment form");
-		btnLabs.setBounds(34, 133, 118, 65);
+		btnLabs.setBounds(213, 152, 118, 65);
 		btnLabs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLabs.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLabs.setForeground(Color.BLACK);
@@ -144,11 +148,11 @@ public class ClientUI {
 		btnUsers.setToolTipText("Users managment form");
 		btnUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Users users = new Users();
+				Physicians users = new Physicians();
 				
 			}
 		});
-		btnUsers.setBounds(162, 131, 118, 68);
+		btnUsers.setBounds(390, 150, 118, 68);
 		btnUsers.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnUsers.setBackground(Color.WHITE);
 		btnUsers.setHorizontalAlignment(SwingConstants.LEFT);
@@ -172,7 +176,7 @@ public class ClientUI {
 		btnMonthly.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnMonthly.setBorder(null);
 		btnMonthly.setBackground(Color.WHITE);
-		btnMonthly.setBounds(183, 264, 183, 65);
+		btnMonthly.setBounds(195, 264, 183, 65);
 		btnMonthly.setIcon(res.getIcon("tests.png"));
 
 		frame.getContentPane().add(btnMonthly);

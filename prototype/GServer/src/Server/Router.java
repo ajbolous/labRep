@@ -4,16 +4,16 @@ import Utils.Request;
 import Views.*;
 
 public class Router {
-	public Users users;
+	public Physicians physicians;
 
 	public Router() {
-		users = new Users();
+		physicians = new Physicians();
 	}
 
 	public Object resolve(Request request) {
 		switch (request.getView()) {
-		case "users":
-			return users.resolve(request);
+		case "physicians":
+			return physicians.resolve(request);
 		}
 		return null;
 	}
